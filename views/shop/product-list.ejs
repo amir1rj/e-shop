@@ -1,0 +1,30 @@
+<%- include('../includes/head.ejs') %> <%- include('../includes/heading.ejs') %>
+<%- include('../includes/navigation.ejs') %>
+
+<main>
+  <div class="grid">
+    <% for(const i of products){ %>
+    <article class="card product-item">
+      <header class="card__header">
+        <h1 class="product__title"><title><%= i.title %></title></h1>
+      </header>
+      <div class="card__image">
+        <img src="/<%= i.image_url%>" alt="Product Title" />
+      </div>
+      <div class="card__content">
+        <h2 class="product__price"><%= i.price %></h2>
+        <p class="product__description"><%= i.description %></p>
+      </div>
+      <div class="card__actions">
+
+        <a href="products/<%= i.id %>" class="btn btn-info">details</a>
+        <a href="products/addTocart" class="btn btn-warning">add to cart</a>
+   
+     
+      </div>
+    </article>
+    <%} %>
+  </div>
+</main>
+
+<%- include('../includes/end.ejs') %>

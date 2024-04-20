@@ -1,0 +1,42 @@
+<%- include('../includes/head.ejs') %>
+<%- include('../includes/heading.ejs') %>
+<%- include('../includes/navigation.ejs') %>
+
+<main>
+    <div class="container" style="background-color: #f8f9fa;">
+      <% if (orderItems && orderItems.length > 0) { %>
+        <ul class="list-group cart__item-list">
+          <% orderItems.forEach(orderItem => { %>
+            <li class="list-group-item cart__item">
+              <div class="row">
+                <div class="col-md-3">
+                  <img src="/<%= orderItem.Product && orderItem.Product.image_url ? orderItem.Product.image_url : 'path/to/default-image.png' %>" class="img-thumbnail" alt="Product Image" />
+                </div>
+                <div class="col-md-6">
+                  <h3><%= orderItem.Product ? orderItem.Product.title : 'Product Not Found' %></h3>
+                  <p>Quantity: <%= orderItem.quantity %></p>
+                </div>
+              </div>
+            </li>
+           
+          <% }) %>
+        </ul>
+        <div class="row justify-content-end mt-3">
+          <form action="order">
+            <div class="col-md-3">
+              <button type="submit" class="btn btn-info">Order</button>
+            </div>
+            <hr>
+         
+             
+            
+          </form>
+          <a href="report/<%= orderItems[0].order_id %>" class="btn btn-info>">report</a>
+        </div>
+      <% } else { %>
+        <p>No items found in your order.</p>
+      <% } %>
+    </div>
+  </main>
+
+<%- include('../includes/end.ejs') %>

@@ -1,0 +1,35 @@
+<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+    <div class="collapse navbar-collapse" id="collapsibleNavbar">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link <%= path === "/" ? "active" : "" %>" href="/">home page</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link <%= path === "/admin/addProduct" ? "active" : "" %>" href="/admin/addProduct">add prudoct</a>
+        </li>
+         <li class="nav-item">
+          <a class="nav-link <%= path === "/admin/getProducts" ? "active" : "" %>" href="/admin/getProducts">admin prudocts</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link <%= path === "/cart" ? "active" : "" %>" href="/cart">cart</a>
+        </li>
+         <li class="nav-item">
+          <a class="nav-link <%= path === "/orders" ? "active" : "" %>" href="/orders">orders</a>
+        </li>
+        <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+        <% if (!isAthenticated){ %>
+          <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+         <li class="nav-item">
+          <a class="nav-link <%= path === "/login" ? "active" : "" %>" href="/login">login</a>
+        </li>
+         <li class="nav-item">
+          <a class="nav-link <%= path === "/register" ? "active" : "" %>" href="/register">register</a>
+        </li>
+        <% }else{ %>
+        <li class="nav-item">
+          <a class="nav-link <%= path === "/loqout" ? "active" : "" %>" href="/loqout">loqout</a>
+        </li>
+        <% } %>
+      </ul>
+    </div>
+  </nav>

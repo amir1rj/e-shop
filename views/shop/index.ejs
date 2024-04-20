@@ -1,0 +1,46 @@
+<%- include('../includes/head.ejs') %>
+<%- include('../includes/heading.ejs') %>
+<%- include('../includes/navigation.ejs') %>
+
+<main class="container mt-5">
+  <div class="row">
+    <% for(const product of products){ %>
+      <div class="col-md-4 mb-4">
+        <div class="card">
+          <img src="/<%= product.image_url %>" class="card-img-top" alt="Product Image">
+          <div class="card-body">
+            <h5 class="card-title"><%= product.title %></h5>
+            <p class="card-text">$<%= product.price %></p>
+            <p class="card-text"><%= product.description %></p>
+            <% if(!edit){ %>
+              <a href="/products/<%= product.id %>" class="btn btn-dark">Details</a>
+              <a href="/products/addToCart/<%= product.id %>" class="btn btn-info">Add to Cart</a>
+            <% } else { %>
+              <a href="/admin/editProduct/<%= product.id %>" class="btn btn-warning">Edit</a>
+              <a href="/admin/deleteProduct/<%= product.id %>" class="btn btn-danger">Delete</a>
+            <% } %>
+          </div>
+        </div>
+      </div>
+    <% } %>
+  </div>
+  <div class="d-flex justify-content-center">
+    <nav aria-label="...">
+      <ul class="pagination">
+        <li class="page-item <%= !has_previous_page ? 'disabled' : '' %>">
+          <a class="page-link" href="<%= previous_page ? `/?page=${previous_page}` : '#' %>" tabindex="-1">Previous</a>
+        </li>
+        <% for(let i = 1; i <= totalPages; i++) { %>
+          <li class="page-item <%= page === i ? 'active' : '' %>">
+            <a class="page-link" href="<%= `/?page=${i}` %>"><%= i %></a>
+          </li>
+        <% } %>
+        <li class="page-item <%= !has_next_page ? 'disabled' : '' %>">
+          <a class="page-link" href="<%= next_page ? `/?page=${next_page}` : '#' %>">Next</a>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</main>
+
+<%- include('../includes/end.ejs') %>

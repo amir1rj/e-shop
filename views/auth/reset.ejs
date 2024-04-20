@@ -1,0 +1,42 @@
+<%- include('../includes/head.ejs') %>
+
+<section class="vh-100" style="background-color: #508bfc">
+  <div class="container py-5 h-100">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+      <div class="col-12 col-md-8 col-lg-6 col-xl-5">
+        <div class="card shadow-2-strong" style="border-radius: 1rem">
+          <div class="card-body p-5 text-center">
+            <h3 class="mb-5">reset password Page</h3>
+          <% if (errorMessage) { %>
+            <div class="alert alert-danger" role="alert">
+              <%= errorMessage %>
+            </div>
+          <% } %>
+          <% if (successMessage) { %>
+            <div class="alert alert-success" role="alert">
+              <%= successMessage %>
+            </div>
+          <% } %>
+            <form action="/reset" method="post">
+              <div class="form-outline mb-4">
+                <input
+                  name="email"
+                  type="email"
+                  id="typeEmailX-2"
+                  class="form-control form-control-lg"
+                  placeholder="Enter your email"
+                />
+              </div>
+              <button class="btn btn-primary btn-lg btn-block" type="submit">
+                send email
+              </button>
+              <input type="hidden" name="_csrf" value="<%= csrfToken %>" />
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<%- include('../includes/end.ejs') %>
