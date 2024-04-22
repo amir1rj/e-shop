@@ -3,7 +3,8 @@ const session = require("express-session");
 const app = express();
 const SequelizeStore = require("connect-session-sequelize")(session.Store);
 const path = require("path");
-const PORT = 3000;
+const PORT = 5000;
+const body_parser = require("body-parser");
 
 const User = require("./models/user.model");
 const flash = require('connect-flash');
